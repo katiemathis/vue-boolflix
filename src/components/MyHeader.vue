@@ -10,7 +10,7 @@
                 <!-- search bar where user inputs partial or full movie title -->
                 <!-- on click, user sees all movies which contain search input -->
                 <div class="col-5">
-                    <input type="text" v-model= "movieSearchText" v-on:keyup.enter="$emit('textEnteredEvt', movieSearchText)">
+                    <input type="text" placeholder="Enter title of movie..." v-model= "movieSearchText" v-on:keyup.enter="$emit('textEnteredEvt', movieSearchText)">
                     <!-- by using the $emit function, the details in this component get sent to the "padre" app -->
                     <button @click="$emit('textEnteredEvt', movieSearchText)">SEARCH</button>
                 </div>

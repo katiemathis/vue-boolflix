@@ -1,10 +1,11 @@
 <template>
   <div id="app">
-    <MyHeader @textEnteredEvt="retrieveTextEntered"/>
-    <MyMain 
-    :movieList="movieList" :movie="movie"    
-    v-for= "(movie, index) in filteredList" :key= "index"
-    />
+      <MyHeader @textEnteredEvt="retrieveTextEntered"/>
+      <MyMain 
+      :movieList="movieList" :movie="movie"    
+      v-for= "(movie, index) in filteredList" :key= "index"
+      />
+      <!-- v-for on MyMain cycles through the array and provides the data from each individual movie -->
   </div>
 </template>
 
@@ -56,16 +57,7 @@ export default {
                 axios.get('https://api.themoviedb.org/3/search/movie?api_key=96259ec6f4490ebbbfaa7d8faba469f1&language=en-US&query=joker&page=1&include_adult=false')
                 .then((response) => {
                     this.movieList = response.data.results;
-                    this.loadingInProgress = false;
-
-                    /*this.cardItems.forEach(cardItem => {
-                        if (!this.genreItems.includes(cardItem.genre)) {
-                            this.genreItems.push(cardItem.genre);
-                            console.log(this.genreItems)
-                        }
-                    });
-
-                    this.$emit('genresReady', this.genreItems)*/
+                    //this.loadingInProgress = false;
                     
                 })
                 .catch(function (error) {
@@ -83,7 +75,7 @@ export default {
         },*/
         created() {
             this.getMovies();
-            this.loadingInProgress = false;
+            //this.loadingInProgress = false;
             
         },
         
@@ -100,10 +92,12 @@ export default {
   padding: 0;
   box-sizing: border-box;
   background-color: $colorBackground;
+
 }
 
 #app {
   width: 100%;
+  height: 100%;
   /*font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
