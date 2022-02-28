@@ -1,9 +1,10 @@
 <template>
   <div id="app">
-      <MyHeader @textEnteredEvt="retrieveTextEntered"/>
-      <MyMain 
+      <MyHeader @textEnteredEvt="getMovies"/>
+      <PageLoading v-if="movieList==0" />
+      <MyMain v-else
       :movieList="movieList" :movie="movie"    
-      v-for= "(movie, index) in filteredList" :key= "index"
+      v-for= "(movie, index) in movieList" :key= "index"
       />
       <!-- v-for on MyMain cycles through the array and provides the data from each individual movie -->
   </div>
@@ -14,6 +15,7 @@ const axios = require('axios');
 
 import MyHeader from './components/MyHeader.vue'
 import MyMain from './components/MyMain.vue'
+import PageLoading from './components/PageLoading.vue';
 
 
 export default {
@@ -21,64 +23,34 @@ export default {
   components: {
     MyHeader,
     MyMain,
+    PageLoading,
  
   },
   data() {
     return {
-      textEntered: '',
-      movie: {},
       movieList: [],
-      filteredMovies: [],
+      api_key: '96259ec6f4490ebbbfaa7d8faba469f1',
+      language: 'en-US',
     }
   },
-  computed:{
-    filteredList() {
-      if(this.textEntered == '') {
-        return this.movieList;
-      }else{
-        return this.filteredMovies; 
-        }
-      }
-    },
   methods: {
-    retrieveTextEntered(textEnteredEvt) {
-      this.textEntered = textEnteredEvt;
-      console.log(this.textEntered)
-
-      this.movieList.forEach((movie) => {
-        if(movie.title.toLowerCase().includes(this.textEntered.toLowerCase())) {
-          this.filteredMovies.push(movie)
-          console.log(movie)
-        }
-      });
-    },
-    getMovies() {
+    getMovies(keyword) {
                 // Make a request for a user with a given ID
-                axios.get('https://api.themoviedb.org/3/search/movie?api_key=96259ec6f4490ebbbfaa7d8faba469f1&language=en-US&query=joker&page=1&include_adult=false')
+                axios.get('https://api.themoviedb.org/3/search/movie?api_key='+ this.api_key +'&query='+ keyword +'&language='+ this.language +'&include_adult=false')
                 .then((response) => {
                     this.movieList = response.data.results;
                     //this.loadingInProgress = false;
-                    
                 })
                 .catch(function (error) {
                     // handle error
                     console.log(error);
+                })
+                .then(function () {
+
                 });
+
             }
-        },
-        /*mounted() {
-            document.onreadystatechanges = () => {
-                if (document.readyState == "complete") {
-                    this.isloaded = true;
-                }
-            }
-        },*/
-        created() {
-            this.getMovies();
-            //this.loadingInProgress = false;
-            
-        },
-        
+        },   
   }
 
 </script>

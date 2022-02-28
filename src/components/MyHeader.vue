@@ -3,13 +3,13 @@
         <div class="container">
             <div class="row">
                 <!-- logo -->
-                <div class="col-7">
+                <div class="col-8">
                     <h1>BOOLFLIX</h1>
                 </div>
 
                 <!-- search bar where user inputs partial or full movie title -->
                 <!-- on click, user sees all movies which contain search input -->
-                <div class="col-5">
+                <div class="col-4">
                     <input type="text" placeholder="Enter title of movie..." v-model= "movieSearchText" v-on:keyup.enter="$emit('textEnteredEvt', movieSearchText)">
                     <!-- by using the $emit function, the details in this component get sent to the "padre" app -->
                     <button @click="$emit('textEnteredEvt', movieSearchText)">SEARCH</button>
@@ -55,7 +55,7 @@ export default {
         margin: auto;
 
         
-        .col-7 {
+        .col-8 {
             align-self: center;
 
             h1 {                    
@@ -63,7 +63,7 @@ export default {
                 line-height: 70px;
             }
         }
-        .col-5 {
+        .col-4 {
             align-self: center;
         }
 

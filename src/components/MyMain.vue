@@ -1,9 +1,4 @@
 <template>
-    <!--<div v-if="loadingInProgress" class="main_container">
-        <div class="container" >
-            <PageLoading />
-        </div>
-    </div>-->
     <div class="container"> 
         <div class="row">
                 <!-- v-for gets completed on app.vue once all $emits and props are properly identified throughout files-->
@@ -41,6 +36,7 @@ export default {
     color: #fff;
     width: 80%;
     margin: auto;
+
 
     .my_card {
         height: 340px;

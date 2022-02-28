@@ -1,9 +1,13 @@
 <template>
-    <div class="d-flex justify-content-center align-items-center page_loader" >
-      <div class="cube"></div>
-      <div class="cube"></div>
-      <div class="cube"></div>
-      <div class="cube"></div>
+    <div class="d-flex justify-content-center align-items-center welcome">
+        <h1>Search movie or TV title</h1>
+ 
+        <div class="d-flex justify-content-center align-items-center page_loader" >
+        <div class="cube"></div>
+        <div class="cube"></div>
+        <div class="cube"></div>
+        <div class="cube"></div>
+        </div>
     </div>
 </template>
 
@@ -17,19 +21,31 @@ export default {
 
 <style scoped lang="scss">
 
-@import '../../style/general.scss';
+@import '../style/general.scss';
 
 * {
     width: 100vw;
-    height:100vh;
-    background-color: $colorDark;
+    background-color: $colorBackground;
+}
+
+.welcome {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: $colorNetflixRed;
+    h1 {
+        text-align: center;
+        text-transform: uppercase;
+    }
 }
 
 
 
 .page_loader {
     position: fixed;
-    top: 0;
+    top: 200px;
     left: 0;
     right: 0;
 
@@ -43,14 +59,15 @@ export default {
         @for $i from 1 through length($colors) {
             &:nth-child(#{$i}) {
                 background-color: nth($colors, $i);
+                border: solid 1px #000;
             }
         }
 
         &:first-child {
-            animation: left .7s infinite;
+            animation: left 3s infinite;
         }
         &:last-child {
-            animation: right .7s infinite .35s;
+            animation: right 3s infinite 1.5s;
         }
     }
 }
