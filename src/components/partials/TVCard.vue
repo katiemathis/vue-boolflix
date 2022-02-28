@@ -1,4 +1,6 @@
 <template>
+<!-- v-for gets completed on app.vue once all $emits and props are properly identified throughout files-->
+<!-- using {{}} here takes each given object from the array and prints it on the screen -->
         <li class="TVSeries">
             <div>
                 <div v-if="TVSeries.poster_path==null">{{TVSeries.name}}</div>
@@ -22,6 +24,7 @@ export default {
     props: {
         'TVList': Array,
         'TVSeries': Object,
+        //'rating': Array,
     }, 
 
 }
