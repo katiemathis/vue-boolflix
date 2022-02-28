@@ -7,15 +7,17 @@
                         <div v-else><img :src= "'http://image.tmdb.org/t/p/w185/' + movie.poster_path" :alt="movie.title"></div>
                     </div>
                     <div class="movie-info flip-card-back">
-                        <div><h6>{{movie.title}}</h6></div>
-                        <div class="original-title" :class= "(movie.original_title==movie.title)?'hide':''"><span class="bold">Original Title: </span>{{movie.original_title}}</div>
-                        <div v-if= "movie.original_language==''">{{movie.original_language}}</div>
-                        <div v-else><lang-flag :iso= "movie.original_language" /></div>
-                        <div class="star-ratings">
-                            <span :class= "(fiveStarRating==0)?'hide':''"><span class="bold">Avg Rating: </span><i class="fa-solid fa-star" v-for="(rating, index) in fiveStarRating" :key="index"></i></span>
-                            <span :class= "(!fiveStarRating==0)?'hide':''"><span class="bold">Be the first to rate: </span><i class="fa-regular fa-star"></i></span>
+                        <div class="card-back-info">
+                            <div><h6>{{movie.title}}</h6></div>
+                            <div class="original-title" :class= "(movie.original_title==movie.title)?'hide':''"><span class="bold">Original Title: </span>{{movie.original_title}}</div>
+                            <div v-if= "movie.original_language==''">{{movie.original_language}}</div>
+                            <div v-else><lang-flag :iso= "movie.original_language" /></div>
+                            <div class="star-ratings">
+                                <span :class= "(fiveStarRating==0)?'hide':''"><span class="bold">Avg Rating: </span><i class="fa-solid fa-star" v-for="(rating, index) in fiveStarRating" :key="index"></i></span>
+                                <span :class= "(!fiveStarRating==0)?'hide':''"><span class="bold">Be the first to rate: </span><i class="fa-regular fa-star"></i></span>
+                            </div>
+                            <div class="overview"><span class="bold" :class= "(movie.overview=='')?'hide':''">Overview: </span>{{movie.overview}}</div>
                         </div>
-                        <div class="overview"><span class="bold" :class= "(movie.overview=='')?'hide':''">Overview: </span>{{movie.overview}}</div>
                     </div>
                 </div>
             </div>
@@ -107,25 +109,31 @@ export default {
             color: #fff;
             transform: rotateY(180deg);
             text-align: left;
-            
-            .star-ratings {
-                color: #fff;
-                font-size: small;
-                .fa-star {
-                    color: gold;
-                }
-                .fa-regular {
-                    color: #fff;
-                }
 
-            }
-            .original-title {
-                font-style: italic;
-                font-size: small;
-            }
-            .overview {
-                font-size: small;
+            .card-back-info {
+                position: relative;
+                height: 260px;
                 overflow-y: scroll;
+            
+                .star-ratings {
+                    color: #fff;
+                    font-size: small;
+                    .fa-star {
+                        color: gold;
+                    }
+                    .fa-regular {
+                        color: #fff;
+                    }
+
+                }
+                .original-title {
+                    font-style: italic;
+                    font-size: small;
+                }
+                .overview {
+                    font-size: small;
+                    
+                }
             }
         }
     }

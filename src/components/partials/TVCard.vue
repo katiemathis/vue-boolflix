@@ -1,24 +1,6 @@
 <template>
 <!-- v-for gets completed on app.vue once all $emits and props are properly identified throughout files-->
 <!-- using {{}} here takes each given object from the array and prints it on the screen -->
-      <!--  <div class="TVSeries col" >
-            <div class="row row-cols-lg-10 row-cols-md-5 row-cols-2">
-                <div class="tv-poster">
-                    <div v-if="TVSeries.poster_path==null">{{TVSeries.name}}</div>
-                    <div v-else><img :src= "'http://image.tmdb.org/t/p/w154/' + TVSeries.poster_path" :alt="TVSeries.name"></div>
-                </div>
-                <div class="tv-details hide">
-                    <div>{{TVSeries.name}}</div>
-                    <div>{{TVSeries.original_name}}</div>
-                    <div v-if= "TVSeries.original_language==''">{{TVSeries.original_language}}</div>
-                    <div v-else><lang-flag :iso= "TVSeries.original_language" /></div>
-                    <div class="tv-rating">
-                        <i class="fa-solid fa-star" v-for="(rating, index) in fiveStarRating" :key="index"></i>
-                        <i class="fa-solid fa-star-half" v-for="(rating, index) in fiveStarRating%1" :key="index"></i>
-                    </div>
-                </div>
-            </div>
-        </div> -->
         <div class="tv-series col">
             <div class="flip-card row justify-content-start">
                 <div class="col flip-card-inner">
@@ -27,15 +9,17 @@
                         <div v-else><img :src= "'http://image.tmdb.org/t/p/w185/' + TVSeries.poster_path" :alt="TVSeries.name"></div>
                     </div>
                     <div class="movie-info flip-card-back">
-                        <div><h6>{{TVSeries.name}}</h6></div>
-                        <div class="original-title" :class= "(TVSeries.original_name==TVSeries.name)?'hide':''"><span class="bold">Original Name: </span>{{TVSeries.original_name}}</div>
-                        <div v-if= "TVSeries.original_language==''">{{TVSeries.original_language}}</div>
-                        <div v-else><lang-flag :iso= "TVSeries.original_language" /></div>
-                        <div class="star-ratings">
-                            <span :class= "(fiveStarRating==0)?'hide':''"><span class="bold">Avg Rating: </span><i class="fa-solid fa-star" v-for="(rating, index) in fiveStarRating" :key="index"></i></span>
-                            <span :class= "(!fiveStarRating==0)?'hide':''"><span class="bold">Be the first to rate: </span><i class="fa-regular fa-star"></i></span>
+                        <div class="card-back-info">
+                            <div><h6>{{TVSeries.name}}</h6></div>
+                            <div class="original-title" :class= "(TVSeries.original_name==TVSeries.name)?'hide':''"><span class="bold">Original Name: </span>{{TVSeries.original_name}}</div>
+                            <div v-if= "TVSeries.original_language==''">{{TVSeries.original_language}}</div>
+                            <div v-else><lang-flag :iso= "TVSeries.original_language" /></div>
+                            <div class="star-ratings">
+                                <span :class= "(fiveStarRating==0)?'hide':''"><span class="bold">Avg Rating: </span><i class="fa-solid fa-star" v-for="(rating, index) in fiveStarRating" :key="index"></i></span>
+                                <span :class= "(!fiveStarRating==0)?'hide':''"><span class="bold">Be the first to rate: </span><i class="fa-regular fa-star"></i></span>
+                            </div>
+                            <div class="overview"><span class="bold" :class= "(TVSeries.overview=='')?'hide':''">Overview: </span>{{TVSeries.overview}}</div>
                         </div>
-                        <div class="overview"><span class="bold" :class= "(TVSeries.overview=='')?'hide':''">Overview: </span>{{TVSeries.overview}}</div>
                     </div>
                 </div>
             </div>
@@ -58,8 +42,7 @@ export default {
         return {
             fiveStarRating: (Math.ceil(this.TVSeries.vote_average))/2
         }
-    } 
-
+    },
 
 }
 
@@ -131,25 +114,31 @@ export default {
             color: #fff;
             transform: rotateY(180deg);
             text-align: left;
-            
-            .star-ratings {
-                color: #fff;
-                font-size: small;
-                .fa-star {
-                    color: gold;
-                }
-                .fa-regular {
-                    color: #fff;
-                }
 
-            }
-            .original-title {
-                font-style: italic;
-                font-size: small;
-            }
-            .overview {
-                font-size: small;
-                overflow-y: scroll;
+            .card-back-info {
+                position: relative;
+                height: 260px;
+                overflow: scroll;
+
+                .star-ratings {
+                    color: #fff;
+                    font-size: small;
+                    .fa-star {
+                        color: gold;
+                    }
+                    .fa-regular {
+                        color: #fff;
+                    }
+
+                }
+                .original-title {
+                    font-style: italic;
+                    font-size: small;
+                }
+                .overview {
+                    font-size: small;
+                    
+                }
             }
         }
     }
