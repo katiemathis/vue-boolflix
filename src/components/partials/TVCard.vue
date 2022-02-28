@@ -10,7 +10,10 @@
             <div>{{TVSeries.original_name}}</div>
             <div v-if= "TVSeries.original_language==''">{{TVSeries.original_language}}</div>
             <div v-else><lang-flag :iso= "TVSeries.original_language" /></div>
-            <div >{{fiveStarRating}}</div>
+            <div>
+                <i class="fa-solid fa-star" v-for="(rating, index) in fiveStarRating" :key="index"></i>
+                <i class="fa-solid fa-star-half" v-for="(rating, index) in fiveStarRating%1" :key="index"></i>
+            </div>
         </li>
 </template>
 
@@ -27,7 +30,7 @@ export default {
     },
     data () {
         return {
-            fiveStarRating: (Math.floor(this.TVSeries.vote_average))/2
+            fiveStarRating: (Math.ceil(this.TVSeries.vote_average))/2
         }
     } 
 
