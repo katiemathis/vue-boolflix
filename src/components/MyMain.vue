@@ -1,14 +1,13 @@
 <template>
     <div class="container"> 
         <div class="row">
+            <ul>
                 <!-- v-for gets completed on app.vue once all $emits and props are properly identified throughout files-->
                 <!-- using {{}} here takes each given object from the array and prints it on the screen -->
-                <h3>Title: {{movie.title}}</h3>
-                <ul>
-                    <li>Original Title: {{movie.original_title}}</li>
-                    <li>Original Language: {{movie.original_language}}</li>                        
-                    <li>Average Vote: {{movie.vote_average}}</li>
-                </ul>
+                    <!--:movies="movieList"  -->
+                <MovieCard :movieList="movieList" :movie="movie"   
+                v-for= "(movie, index) in movieList" :key= "index"/>
+            </ul>
         </div>
     </div>
 </template>
@@ -17,14 +16,19 @@
 //const axios = require('axios');
 
 
-//import PageLoading from './partials/PageLoading.vue'
+import MovieCard from './partials/MovieCard.vue'
 
 export default {
     name: 'MyMain',
+    components: {
+        MovieCard,    
+    },
     props: {
         'movieList': Array,
-        'movie': Object,
+        //'movie': Object,
     },  
+ 
+
 }
 </script>
 
