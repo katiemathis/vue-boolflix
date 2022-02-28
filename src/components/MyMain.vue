@@ -2,14 +2,14 @@
     <div class="container"> 
         <div class="row">
             <h1>Movie Results</h1>
-            <ul v-for="(stars,index) in rating" :key="index" :rating="rating">
+            <ul>
                 <!-- v-for on MyMain cycles through the array and provides the data from each individual movie -->
                 <MovieCard :movieList="movieList" :movie="movie"  
                 v-for= "(movie, index) in movieList" :key= "index"/>
             </ul>
             <h1>TV Series Results</h1>
             <ul>
-                <TVCard :TVList="TVList" :TVSeries="TVSeries" 
+                <TVCard :TVList="TVList" :TVSeries="TVSeries"  
                 v-for= "(TVSeries, index) in TVList" :key= "index"
                 />
             </ul>
@@ -33,7 +33,7 @@ export default {
     props: {
         'movieList': Array,
         'TVList': Array,
-        //'rating': Array,        
+        //'rating': Array,      
         //'movie': Object,
     },  
  

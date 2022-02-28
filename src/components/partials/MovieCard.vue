@@ -8,7 +8,7 @@
             <div>{{movie.original_title}}</div>
             <div v-if= "movie.original_language==''">{{movie.original_language}}</div>
             <div v-else><lang-flag :iso= "movie.original_language" /></div>
-            <div>{{movie.vote_average}}</div>
+            <div >{{fiveStarRating}}</div>
         </li>
 </template>
 
@@ -23,6 +23,11 @@ export default {
         'movieList': Array,
         'movie': Object,
     }, 
+    data () {
+        return {
+            fiveStarRating: (Math.floor(this.movie.vote_average))/2
+        }
+    } 
 
 }
 </script>

@@ -27,7 +27,6 @@ export default {
     return {
       movieList: [],
       TVList: [],
-      rating: [],
       api_key: '96259ec6f4490ebbbfaa7d8faba469f1',
       language: 'en-US',
     }
@@ -54,19 +53,20 @@ export default {
           this.TVList = response2.data.results;
         //this allows me to parse out the ratings for each of the elements so I can later
         //use them in a v-for, convert to a 5-point scale and use a star icon for each point
-          this.movieList.forEach(movie => {
+          /*this.movieList.forEach(movie => {
             let fiveStar = (Math.floor(movie.vote_average))/2;
 
             this.rating.push(fiveStar);
-            console.log('movie'+this.rating)
+            console.log(this.rating + 'movie')
+            
           });
           this.TVList.forEach(TVSeries => {
             let fiveStar = (Math.floor(TVSeries.vote_average))/2;
 
             this.rating.push(fiveStar);
-            console.log('TV'+this.rating)
+            console.log(this.rating + 'TV')
           }
-          )
+          )*/
       }))
       .catch(function (error) {
       // handle error
