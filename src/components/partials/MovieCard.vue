@@ -1,5 +1,9 @@
 <template>
         <li class="movies">
+            <div>
+                <div v-if="movie.poster_path==null">{{movie.title}}</div>
+                <div v-else><img :src= "'http://image.tmdb.org/t/p/w154/' + movie.poster_path" :alt="movie.title"></div>
+            </div>
             <div>{{movie.title}}</div>
             <div>{{movie.original_title}}</div>
             <div v-if= "movie.original_language==''">{{movie.original_language}}</div>

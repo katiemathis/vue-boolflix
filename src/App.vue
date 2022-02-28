@@ -2,7 +2,7 @@
   <div id="app">
       <MyHeader @textEnteredEvt="getTitles"/>
       <!--<PageLoading v-if="movieList==0" />-->
-      <MyMain :movieList="movieList" />
+      <MyMain :movieList="movieList" :TVList="TVList"/>
       <!-- v-for on MyMain cycles through the array and provides the data from each individual movie -->
   </div>
 </template>
