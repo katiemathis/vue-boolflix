@@ -1,18 +1,24 @@
 <template>
     <div class="container"> 
         <div class="row">
-            <h1>Movie Results</h1>
-            <ul>
-                <!-- v-for on MyMain cycles through the array and provides the data from each individual movie -->
-                <MovieCard :movieList="movieList" :movie="movie"  
-                v-for= "(movie, index) in movieList" :key= "index"/>
-            </ul>
+            <div class="col">
+                <h1>Movie Results</h1>
+                <div class="row">
+                    <!-- v-for on MyMain cycles through the array and provides the data from each individual movie -->
+                    <MovieCard :movieList="movieList" :movie="movie"  
+                    v-for= "(movie, index) in movieList" :key= "index"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
             <h1>TV Series Results</h1>
-            <ul>
-                <TVCard :TVList="TVList" :TVSeries="TVSeries"  
-                v-for= "(TVSeries, index) in TVList" :key= "index"
-                />
-            </ul>
+                <div class="row">
+                    <TVCard :TVList="TVList" :TVSeries="TVSeries"  
+                    v-for= "(TVSeries, index) in TVList" :key= "index"
+                    />
+                </div>
+            </div>
         </div>
     </div>
 </template>

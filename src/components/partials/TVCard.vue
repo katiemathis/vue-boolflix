@@ -1,29 +1,31 @@
 <template>
 <!-- v-for gets completed on app.vue once all $emits and props are properly identified throughout files-->
 <!-- using {{}} here takes each given object from the array and prints it on the screen -->
-        <li class="TVSeries" >
-            <div>
-                <div v-if="TVSeries.poster_path==null">{{TVSeries.name}}</div>
-                <div v-else><img :src= "'http://image.tmdb.org/t/p/w154/' + TVSeries.poster_path" :alt="TVSeries.name"></div>
+        <div class="TVSeries col" >
+            <div class="row row-cols-lg-4 row-cols-md-2 row-cols-1">
+                <div>
+                    <div v-if="TVSeries.poster_path==null">{{TVSeries.name}}</div>
+                    <div v-else><img :src= "'http://image.tmdb.org/t/p/w154/' + TVSeries.poster_path" :alt="TVSeries.name"></div>
+                </div>
+                <!--<div>{{TVSeries.name}}</div>
+                <div>{{TVSeries.original_name}}</div>
+                <div v-if= "TVSeries.original_language==''">{{TVSeries.original_language}}</div>
+                <div v-else><lang-flag :iso= "TVSeries.original_language" /></div>
+                <div>
+                    <i class="fa-solid fa-star" v-for="(rating, index) in fiveStarRating" :key="index"></i>
+                    <i class="fa-solid fa-star-half" v-for="(rating, index) in fiveStarRating%1" :key="index"></i>
+                </div>-->
             </div>
-            <div>{{TVSeries.name}}</div>
-            <div>{{TVSeries.original_name}}</div>
-            <div v-if= "TVSeries.original_language==''">{{TVSeries.original_language}}</div>
-            <div v-else><lang-flag :iso= "TVSeries.original_language" /></div>
-            <div>
-                <i class="fa-solid fa-star" v-for="(rating, index) in fiveStarRating" :key="index"></i>
-                <i class="fa-solid fa-star-half" v-for="(rating, index) in fiveStarRating%1" :key="index"></i>
-            </div>
-        </li>
+        </div>
 </template>
 
 <script>
-import LangFlag from 'vue-lang-code-flags';
+//import LangFlag from 'vue-lang-code-flags';
 export default {
     name: 'TVCard',
-    components: {
+    /*components: {
         LangFlag,
-    },
+    },*/
     props: {
         'TVList': Array,
         'TVSeries': Object,
