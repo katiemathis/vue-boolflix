@@ -27,8 +27,8 @@ export default {
     return {
       movieList: [],
       TVList: [],
-      movieID: '',
-      tvID: '',
+      movieID: [],
+      tvID: [],
       //movieCast: [],
       //TVCast: [],
       //results: [],
@@ -58,21 +58,21 @@ export default {
       .then(axios.spread((response1, response2) => {
           this.movieList = response1.data.results;
           for(this.i=0;this.i<this.movieList.length;this.i++){
-            this.movieID = response1.data.results[this.i].id;
-            console.log(this.movieID)
+            this.movieID.push(response1.data.results[this.i].id);
+            console.log(this.movieID + 'movie')
           }
           
           this.TVList = response2.data.results;
           for(this.i=0;this.i<this.TVList.length;this.i++){
-            this.tvID = response2.data.results[this.i].id;
-            console.log(this.tvID)
+            this.tvID.push(response2.data.results[this.i].id);
+            console.log(this.tvID + 'tv')
           }
           
-          /*this.movieCast = response3.data.cast;
-          console.log(this.movieCast)
+          //this.movieCast = response3.data.cast;
+          //console.log(this.movieCast)
           
-          this.TVCast = response4.data.cast;
-          console.log(this.TVCast)*/
+          //this.TVCast = response4.data.cast;
+          //console.log(this.TVCast)
 
 
           //I can combine the lists like this which will feed into the "results" array in data
