@@ -27,16 +27,15 @@ export default {
     return {
       movieList: [],
       TVList: [],
+      movieID: {},
+      tvID: {},
+      //movieCast: [],
+      //TVCast: [],
       //results: [],
       api_key: '96259ec6f4490ebbbfaa7d8faba469f1',
       language: 'en-US',
     }
   },
-  /*computed: {
-    computedResults() {
-      return [...this.movieList, ...this.TVList]
-    }
-  },*/
   methods: {
     getTitles(keyword) {
 
@@ -51,12 +50,27 @@ export default {
       axios.all([
         //this syntax allows me to make several requests simultaneously
         axios.get('https://api.themoviedb.org/3/search/movie/', params),
-        axios.get('https://api.themoviedb.org/3/search/tv', params)
+        axios.get('https://api.themoviedb.org/3/search/tv', params),
+        //axios.get('https://api.themoviedb.org/3/movie/'+ this.movieID + '/credits?api_key='+ this.api_key +'&language='+ this.language),
+        //axios.get('https://api.themoviedb.org/3/tv/'+ this.tvID + '/credits?api_key='+ this.api_key +'&language='+ this.language)
       ])
         //by differentiating the different responses, I'm able to keep both lists separate
       .then(axios.spread((response1, response2) => {
           this.movieList = response1.data.results;
+          this.movieID = response1.data.results.id;
+          console.log(this.movieID)
+          
           this.TVList = response2.data.results;
+          this.tvID = response2.data.results.id;
+          console.log(this.tvID)
+          
+          /*this.movieCast = response3.data.cast;
+          console.log(this.movieCast)
+          
+          this.TVCast = response4.data.cast;
+          console.log(this.TVCast)*/
+
+
           //I can combine the lists like this which will feed into the "results" array in data
           //this.results = [...this.movieList, ...this.TVList]
 
@@ -70,7 +84,32 @@ export default {
       });
 
       }
-    },   
+    }, 
+    /*getCast() {
+      axios.all([
+        //this syntax allows me to make several requests simultaneously
+        axios.get('https://api.themoviedb.org/3/movie/'+ this.movieID + '/credits?api_key='+ this.api_key +'&language='+ this.language),
+        axios.get('https://api.themoviedb.org/3/tv/'+ this.tvID + '/credits?api_key='+ this.api_key +'&language='+ this.language)
+      ])
+        //by differentiating the different responses, I'm able to keep both lists separate
+      .then(axios.spread((response1, response2) => {
+          this.movieCast = response1.data.cast;
+          this.TVCast = response2.data.cast;
+          //I can combine the lists like this which will feed into the "results" array in data
+          //this.results = [...this.movieList, ...this.TVList]
+          console.log('movie cast' + this.movieCast);
+          console.log('TV cast' + this.TVCast);
+
+      }))
+      .catch(function (error) {
+      // handle error
+      console.log(error);
+      })
+      .then(function () {
+
+      });
+
+    }*/  
   }
 
 </script>
