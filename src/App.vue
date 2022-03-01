@@ -57,12 +57,16 @@ export default {
         //by differentiating the different responses, I'm able to keep both lists separate
       .then(axios.spread((response1, response2) => {
           this.movieList = response1.data.results;
-          this.movieID = response1.data.results.id;
-          console.log(this.movieID)
+          for(this.i=0;this.i<this.movieList.length;this.i++){
+            this.movieID = response1.data.results[this.i].id;
+            console.log(this.movieID)
+          }
           
           this.TVList = response2.data.results;
-          this.tvID = response2.data.results.id;
-          console.log(this.tvID)
+          for(this.i=0;this.i<this.TVList.length;this.i++){
+            this.tvID = response2.data.results[this.i].id;
+            console.log(this.tvID)
+          }
           
           /*this.movieCast = response3.data.cast;
           console.log(this.movieCast)
