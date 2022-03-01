@@ -5,7 +5,7 @@
                 <h1>Movie Results</h1>
                 <div class="row">
                     <!-- v-for on MyMain cycles through the array and provides the data from each individual movie -->
-                    <MovieCard :movieList="movieList" :movie="movie"  
+                    <MovieInfo :movieList="movieList" :movie="movie"  
                     v-for= "(movie, index) in movieList" :key= "index"/>
                 </div>
             </div>
@@ -14,7 +14,7 @@
             <div class="col">
             <h1>TV Series Results</h1>
                 <div class="row">
-                    <TVCard :TVList="TVList" :TVSeries="TVSeries"  
+                    <TVInfo :TVList="TVList" :TVSeries="TVSeries"  
                     v-for= "(TVSeries, index) in TVList" :key= "index"
                     />
                 </div>
@@ -27,14 +27,14 @@
 //const axios = require('axios');
 
 
-import MovieCard from './partials/MovieCard.vue'
-import TVCard from './partials/TVCard.vue'
+import MovieInfo from './partials/MovieInfo.vue'
+import TVInfo from './partials/TVInfo.vue'
 
 export default {
     name: 'MyMain',
     components: {
-        MovieCard,    
-        TVCard,
+        MovieInfo,    
+        TVInfo,
     },
     props: {
         'movieList': Array,

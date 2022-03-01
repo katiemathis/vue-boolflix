@@ -27,10 +27,16 @@ export default {
     return {
       movieList: [],
       TVList: [],
+      //results: [],
       api_key: '96259ec6f4490ebbbfaa7d8faba469f1',
       language: 'en-US',
     }
   },
+  /*computed: {
+    computedResults() {
+      return [...this.movieList, ...this.TVList]
+    }
+  },*/
   methods: {
     getTitles(keyword) {
 
@@ -51,22 +57,9 @@ export default {
       .then(axios.spread((response1, response2) => {
           this.movieList = response1.data.results;
           this.TVList = response2.data.results;
-        //this allows me to parse out the ratings for each of the elements so I can later
-        //use them in a v-for, convert to a 5-point scale and use a star icon for each point
-          /*this.movieList.forEach(movie => {
-            let fiveStar = (Math.floor(movie.vote_average))/2;
+          //I can combine the lists like this which will feed into the "results" array in data
+          //this.results = [...this.movieList, ...this.TVList]
 
-            this.rating.push(fiveStar);
-            console.log(this.rating + 'movie')
-            
-          });
-          this.TVList.forEach(TVSeries => {
-            let fiveStar = (Math.floor(TVSeries.vote_average))/2;
-
-            this.rating.push(fiveStar);
-            console.log(this.rating + 'TV')
-          }
-          )*/
       }))
       .catch(function (error) {
       // handle error
