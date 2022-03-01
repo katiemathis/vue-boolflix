@@ -1,5 +1,5 @@
 <template>
-            <div class="flip-card row justify-content-start">
+            <div class="flip-card row justify-content-start" >
                 <div class="col flip-card-inner">
                     <div class="flip-card-front">
                         <div v-if="info.poster_path">
@@ -13,6 +13,7 @@
                     <div class="movie-info flip-card-back">
                         <div class="card-back-info">
                             <div><h6>{{getTitle()}}</h6></div>
+                            <h6>{{info.ID}}</h6>
                             <div class="original-title" :class= "(getOriginalTitle()==getTitle())?'hide':''">
                                 <span class="bold">Original Title: </span>
                                 {{getOriginalTitle()}}
@@ -35,6 +36,11 @@
                                 <span class="bold" :class= "(info.overview=='')?'hide':''">Overview: </span>
                                 {{info.overview}}
                             </div>
+                            <div class="genre-ids">
+                                <span class="bold" :class= "(info.overview=='')?'hide':''">Genres: </span>
+                                {{info.genre_ids}}
+                            </div>
+                                
                         </div>
                     </div>
                 </div>
@@ -52,6 +58,9 @@ export default {
         'TVList': Array,
         'movieList': Array,
         'info': Object,
+        'tvID': Number,
+        'tvIDList': Array,
+        //'actorsNames': Array
     }, 
     computed: {
         getComputedStar() {
@@ -75,9 +84,11 @@ export default {
         },
         getStar() {
             return Math.ceil(this.info.vote_average /2);
+        }, 
+        getCastProva() {
+            console.log('the get cast prova worked')
         }
-    }, 
-
+    }
 }
 </script>
 
