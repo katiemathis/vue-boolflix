@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <MyHeader @textEnteredEvt="getTitles"/>
+      <MyHeader @textEnteredEvt="getTitles" />
       <!--<PageLoading v-if="movieList==0" />-->
       <MyMain :movieList="movieList" :TVList="TVList" :movieIDList="movieIDList" :tvIDList="tvIDList" />
       
@@ -33,7 +33,8 @@ export default {
       tvID: '',
       movieCast: [],
       TVCast: [],
-      actorNames: [],
+      movieActorNames: [],
+      tvActorNames: [],
       ID: '',
       results: [],
       api_key: '96259ec6f4490ebbbfaa7d8faba469f1',
@@ -48,8 +49,6 @@ export default {
           'api_key': this.api_key,
           'query': keyword,
           'language': this.language,
-          'movie_ID': this.movieID,
-          'tv_ID': this.tvID,
 
         }
       }
@@ -74,6 +73,10 @@ export default {
           for(this.i=0;this.i<this.movieList.length;this.i++){
             this.movieIDList.push(this.movieList[this.i].id);
           }
+          this.movieIDList.forEach(movieID => {
+                this.movieID = movieID
+                console.log('movieID: ' + movieID)
+            })
           
           
           for(this.i=0;this.i<this.TVList.length;this.i++){
@@ -89,10 +92,10 @@ export default {
             console.log('ID' + this.ID)
           }*/
 
-          for(this.i=0;this.i<this.movieIDList.length;this.i++) {
+          /*for(this.i=0;this.i<this.movieIDList.length;this.i++) {
             this.movieID = this.movieIDList[this.i]
             //console.log(this.movieID)
-          } 
+          } */
 
           for(this.i=0;this.i<this.tvIDList.length;this.i++) {
             this.tvID = this.tvIDList[this.i]
@@ -106,15 +109,48 @@ export default {
       // handle error
       console.log(error);
       })
+      //.then(this.getCast())
+    },
+    /*getCast() {
+
+      axios.all([
+        axios.get('https://api.themoviedb.org/3/movie/' + this.movieID + '/credits?api_key=' + this.api_key +'&language='+ this.language),
+        axios.get('https://api.themoviedb.org/3/tv/'+ this.tvID + '/credits?api_key='+ this.api_key + '&language=' + this.language)
+      ])
+        //by differentiating the different responses, I'm able to keep both lists separate
+      .then(axios.spread((response1, response2) => {
+          this.movieCast = response1.data.cast;
+          console.log('movie cast' + this.movieCast)
+          
+          this.TVCast = response2.data.cast;
+          console.log('TV cast' + this.TVCast)
+
+          for(this.i=0;this.i<this.movieCast.length;this.i++){
+            this.movieActorNames.push(this.movieCast[this.i].name);
+          }
+
+          for(this.i=0;this.i<this.TVCast.length;this.i++){
+            this.tvActorNames.push(this.TVCast[this.i].name);
+          }
+
+      }))
+      .catch(function (error) {
+      // handle error
+      console.log(error);
+      })
       .then(function() {
 
    
       });
-    },
+    },*/
 
-    },
-    
   }
+
+
+}
+    
+    
+  
 
 
 </script>

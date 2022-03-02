@@ -5,8 +5,11 @@
                 <h1>Movie Results</h1>
                 <div class="row">
                     <!-- v-for on MyMain cycles through the array and provides the data from each individual movie -->
-                    <MovieInfo :movieIDList="movieIDList" :movieList="movieList" :movie="movie"
+                    <MovieInfo :movieIDList="movieIDList" :movieList="movieList" 
+                    :movie="movie" :movieID="movieID"
                     v-for= "(movie, spindex) in movieList" :key= "spindex" />
+                    <!--<MovieCredits :movieIDList="movieIDList" :movieID="movieID" 
+                    v-for= "(movieID, index) in movieIDList" :key= "index"/>-->
                 </div>
             </div>
         </div>
@@ -15,7 +18,7 @@
             <h1>TV Series Results</h1>
                 <div class="row">
                     <TVInfo  :TVList="TVList" :TVSeries="TVSeries"
-                    v-for= "(TVSeries, index) in TVList" :key= "index" />
+                    v-for= "(TVSeries, pindex) in TVList" :key= "pindex" />
                 </div>
             </div>
         </div>
@@ -24,11 +27,11 @@
             <h1>TV Credits Results</h1>
                 <div class="row">
                     <TVCredits  :tvIDList="tvIDList" :tvID="tvID" 
-                    v-for= "(tvID, index) in tvIDList" :key= "index" />
+                    v-for= "(tvID, skindex) in tvIDList" :key= "skindex" />
                 </div>
             </div>
         </div>
-        <div class="row">
+        <!--<div class="row">
             <div class="col">
             <h1>Movie Credits Results</h1>
                 <div class="row">
@@ -36,7 +39,7 @@
                     v-for= "(movieID, index) in movieIDList" :key= "index" />
                 </div>
             </div>
-        </div>
+        </div>-->
     </div>
 </template>
 
@@ -47,7 +50,7 @@
 import MovieInfo from './partials/MovieInfo.vue'
 import TVInfo from './partials/TVInfo.vue'
 import TVCredits from './partials/TVCredits.vue'
-import MovieCredits from './partials/MovieCredits.vue'
+//import MovieCredits from './partials/MovieCredits.vue'
 
 export default {
     name: 'MyMain',
@@ -55,7 +58,7 @@ export default {
         MovieInfo,    
         TVInfo,
         TVCredits,
-        MovieCredits
+        //MovieCredits
     },
     props: {
         'movieList': Array,

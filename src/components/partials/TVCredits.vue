@@ -1,7 +1,7 @@
 <template>
 <!-- I created TVCast which will feeds into MyCard with tv credits info to simplify css code and not duplicate -->
         <div class="tv-series col">
-            <button class="debug-button" @click="getCast()"></button>
+            <!--<button class="debug-button"></button>-->
             <div v-for="(actor, index) in actorsNames" :key="index" @>
                 <p>{{actor}}</p>
 
@@ -37,6 +37,11 @@ export default {
         'tvID': Number,
         //'api_key': String,
         //'language': String,
+    },
+    mounted() {
+        this.getCast() 
+        //return this.actorsNames
+            
     },
     methods: {
             getCast() {
