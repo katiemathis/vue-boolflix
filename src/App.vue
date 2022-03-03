@@ -2,7 +2,8 @@
   <div id="app">
       <MyHeader @textEnteredEvt="getTitles"/>
       <!--<PageLoading v-if="movieList==0" />-->
-      <MyMain :movieList="movieList" :TVList="TVList" :movieIDList="movieIDList" :tvIDList="tvIDList" />
+      <MyMain :movieList="movieList" :TVList="TVList" :movieIDList="movieIDList" :tvIDList="tvIDList" :results="results"/>
+      <!--v-for= "(movieID, index) in movieIDList" :key= "index"-->
       
   </div>
 </template>

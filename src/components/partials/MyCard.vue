@@ -14,6 +14,9 @@
                         <div class="card-back-info">
                             <div><h6>{{getTitle()}}</h6></div>
                             <h6>{{info.ID}}</h6>
+                            <!-- <MovieCredits :castList="castList" :actorsNames="actorsNames" 
+                            v-for="(actor, index) in actorsNames" :key="index"/>
+                            <TVCredits :castList="castList" :actorsNames="actorsNames" />-->
                             <div class="original-title" :class= "(getOriginalTitle()==getTitle())?'hide':''">
                                 <span class="bold">Original Title: </span>
                                 {{getOriginalTitle()}}
@@ -49,9 +52,11 @@
 
 <script>
 import LangFlag from 'vue-lang-code-flags';
+//import MovieCredits from '../partials/MovieCredits.vue'
 export default {
     name: 'MyCard',
     components: {
+        //MovieCredits,
         LangFlag,
     },
     props: {

@@ -22,8 +22,8 @@
         <div class="row">
             <div class="col">
             <h1>TV Credits Results</h1>
-                <div class="row">
-                    <TVCredits  :tvIDList="tvIDList" :tvID="tvID" 
+                <div class="row" >
+                    <TVCredits  :TVList="TVList" :TVSeries="TVSeries" :tvIDList="tvIDList" :tvID="tvID" 
                     v-for= "(tvID, index) in tvIDList" :key= "index" />
                 </div>
             </div>
@@ -32,7 +32,7 @@
             <div class="col">
             <h1>Movie Credits Results</h1>
                 <div class="row">
-                    <MovieCredits  :movieIDList="movieIDList" :movieID="movieID" 
+                    <MovieCredits :movieList="movieList" :movie="movie" :movieIDList="movieIDList" :movieID="movieID"  
                     v-for= "(movieID, index) in movieIDList" :key= "index" />
                 </div>
             </div>
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-//const axios = require('axios');
+const axios = require('axios');
 
 
 import MovieInfo from './partials/MovieInfo.vue'
@@ -57,6 +57,14 @@ export default {
         TVCredits,
         MovieCredits
     },
+    data(){
+        return {
+            castList: [],
+            actorsNames: [],
+            api_key: '96259ec6f4490ebbbfaa7d8faba469f1',
+            language: 'en-US',
+        }
+    },
     props: {
         'movieList': Array,
         'TVList': Array,
@@ -67,6 +75,31 @@ export default {
         //'rating': Array,      
         //'movie': Object,
     },  
+    mounted() {
+        this.getCast();
+    },
+    methods: {
+            getCast() {
+                // Make a request for a user with a given ID
+                axios.get('https://api.themoviedb.org/3/movie/'+ this.movieID + '/credits?api_key='+ this.api_key + '&language=' + this.language)
+                .then((response) => {
+                    this.castList = response.data.cast;
+                    console.log(this.castList)
+
+                    for(this.i=0;this.i<5;this.i++){
+                    this.actorsNames.push(this.castList[this.i].name);
+                    console.log(this.actorsNames)
+                    }
+
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                });
+            }
+        
+    },
+
  
 
 }

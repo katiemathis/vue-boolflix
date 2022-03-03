@@ -1,8 +1,8 @@
 <template>
 <!-- I created TVCast which will feeds into MyCard with tv credits info to simplify css code and not duplicate -->
         <div class="tv-series col">
-            <button class="debug-button" @click="getCast()"></button>
-            <div v-for="(actor, index) in actorsNames" :key="index" @>
+            
+            <div v-for="(actor, index) in actorsNames" :key="index">
                 <p>{{actor}}</p>
 
             </div>
@@ -17,7 +17,7 @@ const axios = require('axios');
 
 
 export default {
-    name: 'TVCredits',
+    name: 'MovieCredits',
     components: {
         
         
@@ -37,6 +37,9 @@ export default {
         'movieID': Number,
         //'api_key': String,
         //'language': String,
+    },
+    mounted() {
+        this.getCast();
     },
     methods: {
             getCast() {
